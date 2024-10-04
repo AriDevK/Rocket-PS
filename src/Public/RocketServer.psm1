@@ -1,21 +1,23 @@
+using module ".\RocketRouter.psm1"
 using namespace System.Net
+using namespace System.Collections.Generic
 
 class RocketServer {
     [string] $Port
     [string] $Url
     [RocketRouter] $Router
-    hidden [HttpListener] $httpListener
+    hidden [System.Net.HttpListener] $httpListener
 
 
     RocketServer() {
         $this.Url = $global:Url
         $this.Port = $global:Port
-        $this.httpListener = New-Object HttpListener
+        $this.httpListener = [System.Net.HttpListener]::new()
         $this.Router = [RocketRouter]::new()
         $this.httpListener.Prefixes.Add($this.Url + ":" + $this.Port + "/")
     }
 
-    [void] Launch() {
+    Launch() {
         # Clear-Host
         Write-Host "-------------------------------------------------" -BackgroundColor DarkBlue -ForegroundColor White
         Write-Host "🚀 Starting server on $($this.Url):$($this.Port)"
@@ -25,6 +27,17 @@ class RocketServer {
         Write-Host "Request received:"
 
         while ($true) {
+
+            # read key press to stop server
+            if ([System.Console]::KeyAvailable) {
+                $key = [System.Console]::ReadKey($true)
+                if ($key.Key -eq "C" -and ($key.Modifiers -band [System.ConsoleModifiers]::Control)) {
+                    Write-Host "Stopping server..."
+                    $this.Stop()
+                    break
+                }
+            }
+
             # start basic web server
             $this.httpListener.Start()
             $httpContext = $this.httpListener.GetContext()
@@ -51,7 +64,7 @@ class RocketServer {
                         $httpResponse.StatusCode = $response[1]
                     }
                     else {
-                        $httpResponse.StatusCode = [HttpStatusCode]::OK
+                        $httpResponse.StatusCode = [System.Net.HttpStatusCode]::OK
                     }
 
                     $buffer = [Text.Encoding]::UTF8.GetBytes($response[0])
@@ -111,7 +124,7 @@ class RocketServer {
                 }
 
 
-                $httpResponse.StatusCode = [HttpStatusCode]::OK
+                $httpResponse.StatusCode = [System.Net.HttpStatusCode]::OK
                 $bytes = [System.IO.File]::ReadAllBytes($filePath)
                 Write-Host "[$(Get-Date -Format "HH:mm:ss")] ($($httpContext.Response.StatusCode + " " + $httpContext.Reponse.StatusDescription)) $($httpContext.Request.Url) "
                 $httpResponse.OutputStream.Write($bytes, 0, $bytes.Length)
@@ -120,7 +133,7 @@ class RocketServer {
                 $response = "<h1>404 Not Found</h1>"
 
                 if ($this.Router.HasErrorHandlers()) {
-                    $notFoundAction = $this.Router.GetErrorHandler([HttpStatusCode]::NotFound)
+                    $notFoundAction = $this.Router.GetErrorHandler([System.Net.HttpStatusCode]::NotFound)
 
                     if ($notFoundAction) {
                         $notFoundResponse = $notFoundAction.Invoke($httpContext)
@@ -132,7 +145,7 @@ class RocketServer {
 
                     $httpResponse = $httpContext.Response
                     $httpResponse.ContentType = "text/html"
-                    $httpResponse.StatusCode = [HttpStatusCode]::NotFound
+                    $httpResponse.StatusCode = [System.Net.HttpStatusCode]::NotFound
                     Write-Host "💥 [$(Get-Date -Format "HH:mm:ss")] ($($httpContext.Response.StatusCode + " " + $httpContext.Reponse.StatusDescription)) $($httpContext.Request.Url) "
 
                     $buffer = [Text.Encoding]::UTF8.GetBytes($response)
@@ -143,7 +156,7 @@ class RocketServer {
         }
     }
 
-    [void] Stop() {
+    Stop() {
         $this.httpListener.Stop()
     }
 }

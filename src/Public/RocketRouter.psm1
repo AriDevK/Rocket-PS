@@ -2,26 +2,26 @@ using namespace System.Net
 using namespace System.Collections.Generic
 
 Class RocketRouter{
-    hidden [Dictionary[[string], [Func[[HttpListenerContext],[Array]]]]] $getRoutes
-    hidden [Dictionary[[string], [Func[[HttpListenerContext],[Array]]]]] $postRoutes
-    hidden [Dictionary[[HttpStatusCode], [Func[[HttpListenerContext],[Array]]]]] $errorRoutes
+    hidden [System.Collections.Generic.Dictionary[[string], [Func[[System.Net.HttpListenerContext],[Array]]]]] $getRoutes
+    hidden [System.Collections.Generic.Dictionary[[string], [Func[[System.Net.HttpListenerContext],[Array]]]]] $postRoutes
+    hidden [System.Collections.Generic.Dictionary[[System.Net.HttpStatusCode], [Func[[System.Net.HttpListenerContext],[Array]]]]] $errorRoutes
 
     RocketRouter () {
-        $this.getRoutes = [Dictionary[string,Action]]::new()
-        $this.postRoutes = [Dictionary[string,Action]]::new()
-        $this.errorRoutes = [Dictionary[[HttpStatusCode], [Func[[HttpListenerContext],[Array]]]]]::new()
+        $this.getRoutes = [System.Collections.Generic.Dictionary[string,Action]]::new()
+        $this.postRoutes = [System.Collections.Generic.Dictionary[string,Action]]::new()
+        $this.errorRoutes = [System.Collections.Generic.Dictionary[[System.Net.HttpStatusCode], [Func[[System.Net.HttpListenerContext],[Array]]]]]::new()
     }
 
     [void] Get ($Path, $Action) {
         if ($null -eq $this.getRoutes) {
-            $this.getRoutes = [Dictionary[string,Action]]::new()
+            $this.getRoutes = [System.Collections.Generic.Dictionary[string,Action]]::new()
         }
         $this.getRoutes.Add($Path, $Action)
     }
 
     [void] Post($Path, $Action) {
         if ($null -eq $this.postRoutes) {
-            $this.postRoutes = [Dictionary[string,Action]]::new()
+            $this.postRoutes = [System.Collections.Generic.Dictionary[string,Action]]::new()
         }
         $this.postRoutes.Add($Path, $Action)
     }
@@ -46,15 +46,15 @@ Class RocketRouter{
         }
     }
 
-    [void] ErrorHandler ([HttpStatusCode] $ErrorCode, $Action){
+    [void] ErrorHandler ([System.Net.HttpStatusCode] $ErrorCode, $Action){
         if ($null -eq $this.errorRoutes) {
-            $this.errorRoutes = [Dictionary[[HttpStatusCode], [Func[[HttpListenerContext],[Array]]]]]::new()
+            $this.errorRoutes = [System.Collections.Generic.Dictionary[[System.Net.HttpStatusCode], [Func[[System.Net.HttpListenerContext],[Array]]]]]::new()
         }
         $this.errorRoutes.Add($ErrorCode, $Action)
     }
 
 
-    [Func[[HttpListenerContext],[Array]]] GetAction ($Path, $HttpMethod){
+    [Func[[System.Net.HttpListenerContext],[Array]]] GetAction ($Path, $HttpMethod){
         if($HttpMethod -eq "GET"){
             return $this.getRoutes[$Path]
         }
@@ -66,12 +66,12 @@ Class RocketRouter{
     
     
 
-    [Func[[HttpListenerContext],[Array]]] GetErrorHandler($ErrorCode){
+    [Func[[System.Net.HttpListenerContext],[Array]]] GetErrorHandler($ErrorCode){
         return $this.errorRoutes[$ErrorCode]
     }
 
     [bool] HasErrorHandlers(){
-        return $this.errorRoutes -ne $null
+        return $null -ne $this.errorRoutes
     }
     
     # [void] Put($Path, $Action) {

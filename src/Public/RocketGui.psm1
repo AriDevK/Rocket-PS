@@ -1,11 +1,11 @@
+using module ".\RocketForm.psm1"
 using namespace System.Net
-Import-Module $PSScriptRoot\rocket_form.ps1
 
 class RocketGui {
     Static [string] Render([string] $Path){
         return @(
             (Invoke-EpsTemplate -Path "views/$Path" -Safe),
-            [HttpStatusCode]::OK
+            [System.Net.HttpStatusCode]::OK
         )
     }
 
@@ -14,7 +14,7 @@ class RocketGui {
 
         if($global:Template -eq "" -or $null -eq $global:Template ){
             return @(
-                (Invoke-EpsTemplate -Path "views/$path" -binding $viewContext -Safe), [HttpStatusCode]::OK
+                (Invoke-EpsTemplate -Path "views/$path" -binding $viewContext -Safe), [System.Net.HttpStatusCode]::OK
             )
         }
 
@@ -26,18 +26,18 @@ class RocketGui {
         }
 
         return @(
-            (Invoke-EpsTemplate -Path "views/layout.eps" -binding $c -Safe), [HttpStatusCode]::OK
+            (Invoke-EpsTemplate -Path "views/layout.eps" -binding $c -Safe), [System.Net.HttpStatusCode]::OK
         )
     }
 
-    Static [string] Render([string] $Path, [HttpStatusCode] $HttpStatus){
+    Static [string] Render([string] $Path, [System.Net.HttpStatusCode] $HttpStatus){
         return @(
             (Invoke-EpsTemplate -Path "views/$Path" -Safe),
             $HttpStatus
         )
     }
 
-    Static [string] Render([string] $Path, [HashTable] $Context, [HttpStatusCode] $HttpStatus){
+    Static [string] Render([string] $Path, [HashTable] $Context, [System.Net.HttpStatusCode] $HttpStatus){
         return @(
             (Invoke-EpsTemplate -Path "views/$Path" -Safe),
             [System.Net.HttpStatusCode]::OK

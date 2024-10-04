@@ -132,7 +132,6 @@ Class RocketField {
     }
 }
 
-
 class RocketForm {
     [string] $action
     [string] $method
