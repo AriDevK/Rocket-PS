@@ -4,7 +4,7 @@ using namespace System.Collections
 using namespace System.Collections.Generic
 
 $directorySeparator = [System.IO.Path]::DirectorySeparatorChar
-$moduleName = $PSScriptRoot.Split($directorySeparator)[-1]
+$moduleName = $PSScriptRoot.Split($directorySeparator)[-2]
 $moduleManifest = $PSScriptRoot + $directorySeparator + $moduleName + '.psd1'
 $publicFunctionsPath = $PSScriptRoot + $directorySeparator + 'Public' + $directorySeparator
 $privateFunctionsPath = $PSScriptRoot + $directorySeparator + 'Private' + $directorySeparator
