@@ -1,0 +1,163 @@
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04">
+  <Obj RefId="0">
+    <TN RefId="0">
+      <T>Microsoft.PowerShell.Commands.PSRepositoryItemInfo</T>
+      <T>System.Management.Automation.PSCustomObject</T>
+      <T>System.Object</T>
+    </TN>
+    <MS>
+      <S N="Name">Rocket</S>
+      <Version N="Version">1.0.5</Version>
+      <S N="Type">Module</S>
+      <S N="Description">Rocket is a minimalist web framework for PowerShell</S>
+      <S N="Author">Ariadne Rangel</S>
+      <S N="CompanyName">AriadneFave</S>
+      <S N="Copyright">(c) 2024 Ariadne Rangel. All rights reserved.</S>
+      <DT N="PublishedDate">2025-01-27T02:38:59-06:00</DT>
+      <Obj N="InstalledDate" RefId="1">
+        <DT>2025-02-09T16:21:05.456078-06:00</DT>
+        <MS>
+          <Obj N="DisplayHint" RefId="2">
+            <TN RefId="1">
+              <T>Microsoft.PowerShell.Commands.DisplayHintType</T>
+              <T>System.Enum</T>
+              <T>System.ValueType</T>
+              <T>System.Object</T>
+            </TN>
+            <ToString>DateTime</ToString>
+            <I32>2</I32>
+          </Obj>
+        </MS>
+      </Obj>
+      <Nil N="UpdatedDate" />
+      <URI N="LicenseUri">https://github.com/AriDevK/Rocket-PS/blob/main/LICENSE</URI>
+      <URI N="ProjectUri">https://github.com/AriDevK/Rocket-PS</URI>
+      <Nil N="IconUri" />
+      <Obj N="Tags" RefId="3">
+        <TN RefId="2">
+          <T>System.Object[]</T>
+          <T>System.Array</T>
+          <T>System.Object</T>
+        </TN>
+        <LST>
+          <S>web-framework</S>
+          <S>web-server</S>
+          <S>http-server</S>
+          <S>http-listener</S>
+          <S>micro-framework</S>
+          <S>minimalist-framework</S>
+          <S>PSModule</S>
+        </LST>
+      </Obj>
+      <Obj N="Includes" RefId="4">
+        <TN RefId="3">
+          <T>System.Collections.Hashtable</T>
+          <T>System.Object</T>
+        </TN>
+        <DCT>
+          <En>
+            <S N="Key">RoleCapability</S>
+            <Obj N="Value" RefId="5">
+              <TNRef RefId="2" />
+              <LST />
+            </Obj>
+          </En>
+          <En>
+            <S N="Key">Function</S>
+            <Obj N="Value" RefId="6">
+              <TNRef RefId="2" />
+              <LST>
+                <S>Use-Rocket</S>
+                <S>Use-RocketForms</S>
+                <S>Use-RocketGui</S>
+              </LST>
+            </Obj>
+          </En>
+          <En>
+            <S N="Key">Workflow</S>
+            <Ref N="Value" RefId="5" />
+          </En>
+          <En>
+            <S N="Key">Cmdlet</S>
+            <Ref N="Value" RefId="5" />
+          </En>
+          <En>
+            <S N="Key">DscResource</S>
+            <Ref N="Value" RefId="5" />
+          </En>
+          <En>
+            <S N="Key">Command</S>
+            <Obj N="Value" RefId="7">
+              <TNRef RefId="2" />
+              <LST>
+                <S>Use-Rocket</S>
+                <S>Use-RocketForms</S>
+                <S>Use-RocketGui</S>
+              </LST>
+            </Obj>
+          </En>
+        </DCT>
+      </Obj>
+      <Nil N="PowerShellGetFormatVersion" />
+      <Nil N="ReleaseNotes" />
+      <Obj N="Dependencies" RefId="8">
+        <TNRef RefId="2" />
+        <LST>
+          <Obj RefId="9">
+            <TN RefId="4">
+              <T>System.Collections.Specialized.OrderedDictionary</T>
+              <T>System.Object</T>
+            </TN>
+            <DCT>
+              <En>
+                <S N="Key">Name</S>
+                <S N="Value">Scout</S>
+              </En>
+              <En>
+                <S N="Key">MinimumVersion</S>
+                <S N="Value">1.1.0</S>
+              </En>
+              <En>
+                <S N="Key">CanonicalId</S>
+                <S N="Value">nuget:Scout/1.1.0</S>
+              </En>
+            </DCT>
+          </Obj>
+        </LST>
+      </Obj>
+      <S N="RepositorySourceLocation">https://www.powershellgallery.com/api/v2</S>
+      <S N="Repository">PSGallery</S>
+      <S N="PackageManagementProvider">NuGet</S>
+      <Obj N="AdditionalMetadata" RefId="10">
+        <TN RefId="5">
+          <T>System.Management.Automation.PSCustomObject</T>
+          <T>System.Object</T>
+        </TN>
+        <MS>
+          <S N="copyright">(c) 2024 Ariadne Rangel. All rights reserved.</S>
+          <S N="description">Rocket is a minimalist web framework for PowerShell</S>
+          <S N="requireLicenseAcceptance">False</S>
+          <S N="isLatestVersion">True</S>
+          <S N="isAbsoluteLatestVersion">True</S>
+          <S N="versionDownloadCount">7</S>
+          <S N="downloadCount">15</S>
+          <S N="packageSize">10441</S>
+          <S N="published">27/1/2025 2:38:59AM -06:00</S>
+          <S N="created">27/1/2025 2:38:59AM -06:00</S>
+          <S N="lastUpdated">9/2/2025 4:20:00PM -06:00</S>
+          <S N="tags">web-framework web-server http-server http-listener micro-framework minimalist-framework PSModule PSFunction_Use-Rocket PSCommand_Use-Rocket PSFunction_Use-RocketForms PSCommand_Use-RocketForms PSFunction_Use-RocketGui PSCommand_Use-RocketGui PSIncludes_Function</S>
+          <S N="developmentDependency">False</S>
+          <S N="updated">2025-02-09T16:20:00Z</S>
+          <S N="NormalizedVersion">1.0.5</S>
+          <S N="Authors">Ariadne Rangel</S>
+          <S N="IsPrerelease">false</S>
+          <S N="ItemType">Module</S>
+          <S N="FileList">Rocket.nuspec|Rocket.psm1|Public\RocketGui.psm1|Public\RocketServer.psm1|Public\Use-RocketGui.ps1|Public\RocketRouter.psm1|Public\Use-Rocket.ps1|Private\Register-PublicPath.ps1|Rocket.psd1|Public\Use-RocketForms.ps1|Public\RocketForm.psm1</S>
+          <S N="GUID">dadea276-ae04-4c01-b901-06838167ec7c</S>
+          <S N="CompanyName">Ariadne Rangel</S>
+        </MS>
+      </Obj>
+      <S N="InstalledLocation">/Users/jorgeluisrangelbenitez/.local/share/powershell/Modules/Rocket/1.0.5</S>
+    </MS>
+  </Obj>
+</Objs>

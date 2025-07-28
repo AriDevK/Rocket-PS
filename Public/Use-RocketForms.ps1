@@ -28,7 +28,7 @@ function Use-RocketForms {
         $originalForms | ForEach-Object {
             $content = Get-Content -Path $_.FullName -Raw
             $content = "Using Module '$global:ROCKET_PUBLIC/RocketForm.psm1'`n" + $content
-            New-Item -ItemType File -Path "$tempPath/$($_.Name)" -Value $content -Force 
+            New-Item -ItemType File -Path "$tempPath/$($_.Name)" -Value $content -Force | Out-Null
         }
 
         $script = ""
